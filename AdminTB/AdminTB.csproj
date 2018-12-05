@@ -56,6 +56,7 @@
     <Compile Include="01TambahBioskop.Designer.cs">
       <DependentUpon>01TambahBioskop.cs</DependentUpon>
     </Compile>
+    <Compile Include="DataBioskop.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="01TambahBioskop.resx">
