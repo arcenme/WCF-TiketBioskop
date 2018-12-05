@@ -29,5 +29,20 @@ namespace AdminTB
         {
 
         }
+
+        private void EditBioskop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void HapusBioskop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void kembaliBioskop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
