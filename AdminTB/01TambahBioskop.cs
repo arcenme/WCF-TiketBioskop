@@ -10,11 +10,16 @@ using System.Windows.Forms;
 
 namespace AdminTB
 {
-    public partial class Form1 : Form
+    public partial class _01TambahBioskop : Form
     {
-        public Form1()
+        public _01TambahBioskop()
         {
             InitializeComponent();
+        }
+
+        private void _01TambahBioskop_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
