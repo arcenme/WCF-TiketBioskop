@@ -13,7 +13,12 @@ namespace ServiceTB
     [ServiceContract]
     public interface IBioskopService
     {
-       
+        //Ambil data bioskop
+        [OperationContract]
+        [WebGet(
+             ResponseFormat = WebMessageFormat.Json,
+             UriTemplate = "Bioskop")]
+        List<Bioskop> GetDataBioskop();
 
     }
 
