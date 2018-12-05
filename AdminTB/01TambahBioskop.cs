@@ -54,5 +54,15 @@ namespace AdminTB
         {
 
         }
+
+        private void KonfirmasiBioskop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BatalBioskop_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

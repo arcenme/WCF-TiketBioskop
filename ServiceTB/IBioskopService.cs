@@ -20,6 +20,29 @@ namespace ServiceTB
              UriTemplate = "Bioskop")]
         List<Bioskop> GetDataBioskop();
 
+        //Membuat data bioskop
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+             RequestFormat = WebMessageFormat.Json,
+             ResponseFormat = WebMessageFormat.Json,
+             UriTemplate = "Bioskop")]
+        string CreateBioskop(Bioskop bioskop);
+
+        //Edit data bioskop
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+            ResponseFormat = WebMessageFormat.Json,
+            RequestFormat = WebMessageFormat.Json,
+            UriTemplate = "Bioskop/Edit")]
+        string EditBioskop(Bioskop bioskop);
+
+        //Hapus data bioskop
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+           ResponseFormat = WebMessageFormat.Json,
+           RequestFormat = WebMessageFormat.Json,
+           UriTemplate = "Bioskop/Delete")]
+        string DeleteBioskop(Bioskop bioskop);
     }
 
     [DataContract]
