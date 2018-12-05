@@ -8,6 +8,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Net;
+using Newtonsoft.Json;
+
 namespace AdminTB
 {
     public partial class _01TambahBioskop : Form
@@ -18,6 +21,11 @@ namespace AdminTB
         }
 
         private void _01TambahBioskop_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TambahBioskop_Click(object sender, EventArgs e)
         {
 
         }
