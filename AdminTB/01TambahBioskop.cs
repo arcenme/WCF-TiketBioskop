@@ -217,5 +217,20 @@ namespace AdminTB
         {
 
         }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LihatDataFilm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
