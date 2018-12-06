@@ -202,5 +202,20 @@ namespace AdminTB
         {
 
         }
+
+        private void BatalFilm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void KonfirmasiFilm_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TambahFilm_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
