@@ -43,6 +43,39 @@ namespace ServiceTB
            RequestFormat = WebMessageFormat.Json,
            UriTemplate = "Bioskop/Delete")]
         string DeleteBioskop(Bioskop bioskop);
+
+
+        //Membuat data Film
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            RequestFormat = WebMessageFormat.Json,
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Film")]
+        string CreateFilm(Bioskop bioskop);
+
+        //Mengambil data Film
+        [OperationContract]
+        [WebGet(
+           ResponseFormat = WebMessageFormat.Json,
+           UriTemplate = "Film")]
+        List<Bioskop> GetDataFIlm();
+
+        //Mengedit data Film
+        [OperationContract]
+        [WebInvoke(Method = "PUT",
+           ResponseFormat = WebMessageFormat.Json,
+           RequestFormat = WebMessageFormat.Json,
+           UriTemplate = "Film/Edit")]
+        string EditFilm(Bioskop bioskop);
+
+        //Menghapus data Film
+        [OperationContract]
+        [WebInvoke(Method = "DELETE",
+          ResponseFormat = WebMessageFormat.Json,
+          RequestFormat = WebMessageFormat.Json,
+          UriTemplate = "Film/Delete")]
+        string DeleteFilm(Bioskop bioskop);
+
     }
 
     [DataContract]
