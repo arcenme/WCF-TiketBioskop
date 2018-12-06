@@ -215,7 +215,38 @@ namespace AdminTB
 
         private void TambahFilm_Click(object sender, EventArgs e)
         {
+            try
+            {
+                DataBioskop DBFilm = new DataBioskop();
+                DBFilm.JudulFilm = textBoxJudulFilm.Text;
+                DBFilm.Ratting = textBoxRatting.Text;
+                DBFilm.Aktor = textBoxAktor.Text;
+                DBFilm.Harga = Int32.Parse(textBoxHarga.Text);
+                DBFilm.Poster = TxtBoxPoster.Text;
+                if (!DBFilm.JudulFilm.Equals("") || DBFilm.Ratting.Equals("") || DBFilm.Aktor.Equals("") || DBFilm.Harga.Equals("") || DBFilm.Poster.Equals(""))
+                {
+                    var dataFilm = JsonConvert.SerializeObject(DBFilm);
+                    var JsonFilm = new WebClient();
+                    JsonFilm.Headers.Add(HttpRequestHeader.ContentType, "application/json; charset=utf-8");
+                    string responseKursi = JsonFilm.UploadString(BaseAddress + "Film", dataFilm);
+                    Console.WriteLine(responseKursi);
 
+                    MessageBox.Show("Sukses", "Create Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    textBoxJudulFilm.Text = "";
+                    textBoxRatting.Text = "";
+                    textBoxAktor.Text = "";
+                    textBoxHarga.Text = "";
+                    TxtBoxPoster.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Insert Data", "Create Film", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Create Film", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void button4_Click(object sender, EventArgs e)
