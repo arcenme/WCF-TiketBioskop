@@ -113,5 +113,107 @@ namespace ServiceTB
             con.Close();
             return msg;
         }
+
+        public string CreateFilm(Bioskop bioskop)
+        {
+            string msg = "GAGAl Create Film";
+            string query = String.Format("INSERT INTO Film (JudulFilm, Ratting, Aktor, Harga, Poster) VALUES ('{0}','{1}','{2}',{3},'{4}')",
+                bioskop.JudulFilm, bioskop.Ratting, bioskop.Aktor, bioskop.Harga, bioskop.Poster);
+            SqlCommand com = new SqlCommand(query, con);  //Comand
+
+            try
+            {
+                con.Open();
+                Console.WriteLine(query);
+                com.ExecuteNonQuery();
+                msg = "SUKSES Create Film";
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL Create Film";
+            }
+            con.Close();
+            return msg;
+        }
+
+        public List<Bioskop> GetDataFIlm()
+        {
+            List<Bioskop> Listbskp = new List<Bioskop>();
+            string query = String.Format("SELECT * FROM Film");
+            SqlCommand com = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop bio = new Bioskop();
+                    bio.IDFilm = reader.GetInt32(0);
+                    bio.JudulFilm = reader.GetString(1);
+                    bio.Ratting = reader.GetString(2);
+                    bio.Aktor = reader.GetString(3);
+                    bio.Harga = reader.GetInt32(4);
+                    bio.Poster = reader.GetString(5);
+                    Listbskp.Add(bio);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return Listbskp;
+        }
+
+        public string EditFilm(Bioskop bioskop)
+        {
+            string msg = "GAGAl";
+            string query = String.Format("UPDATE Film set JudulFilm = '{0}', Ratting = '{1}', Aktor = '{2}', Harga = {3}, Poster ='{4}' where IDFilm ={5}",
+                bioskop.JudulFilm, bioskop.Ratting, bioskop.Aktor, bioskop.Harga, bioskop.Poster, bioskop.IDFilm);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                Console.WriteLine(query);
+                com.ExecuteNonQuery();
+                msg = "SUKSES";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL";
+            }
+            con.Close();
+            return msg;
+        }
+
+
+        public string DeleteFilm(Bioskop bioskop)
+        {
+            string msg = "GAGAl";
+            string query = String.Format("DELETE FROM Film WHERE IDFilm='{0}'", bioskop.IDBioskop);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                Console.WriteLine(query);
+                com.ExecuteNonQuery();
+                msg = "SUKSES";
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL";
+            }
+            con.Close();
+            return msg;
+        }
     }
 }

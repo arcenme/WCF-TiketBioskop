@@ -256,7 +256,35 @@ namespace AdminTB
 
         private void button5_Click(object sender, EventArgs e)
         {
+            try
+            {
+                panelBioskop.Visible = false;
+                panelDataBioskop.Visible = true;
+                panelDataFilm.Visible = false;
+                panelEditBioskop.Visible = true;
+                panelEditFilm.Visible = false;
+                panelFilm.Visible = false;
+               
+                //Get Data
+                var listbskp = listViewBioskop.SelectedItems[0];
+                string IDBioskop = listbskp.SubItems[1].Text;
+                string NamaBioskop = listbskp.SubItems[2].Text;
+                string AlamatBisokop = listbskp.SubItems[3].Text;
+                string Jumlah_Kursi = listbskp.SubItems[4].Text;
+                _IDB = listbskp.SubItems[0].Text;
 
+                panelDataBioskop.Visible = false;
+                panelEditBioskop.Visible = true;
+
+                EditIDBskp.AppendText(IDBioskop);
+                EditNamaBskp.AppendText(NamaBioskop);
+                EditAlamatBskp.AppendText(AlamatBisokop);
+                EditKapasitasBskp.AppendText(Jumlah_Kursi);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Chose Data", "Show Data", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void LihatDataFilm_Click(object sender, EventArgs e)
