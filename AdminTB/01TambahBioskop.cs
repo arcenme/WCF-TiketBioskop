@@ -625,6 +625,32 @@ namespace AdminTB
 
         }
 
+        private void buttonCekKursi_Click(object sender, EventArgs e)
+        {
+            panelBioskop.Visible = false;
+            panelDataBioskop.Visible = false;
+            panelDataFilm.Visible = false;
+            panelEditBioskop.Visible = false;
+            panelEditFilm.Visible = false;
+            panelFilm.Visible = false;
+            panelJadwal.Visible = false;
+            panelKursi.Visible = true;
+            panelSign.Visible = false;
+        }
+
+        private void buttonCekJadwal_Click(object sender, EventArgs e)
+        {
+            panelBioskop.Visible = false;
+            panelDataBioskop.Visible = false;
+            panelDataFilm.Visible = false;
+            panelEditBioskop.Visible = false;
+            panelEditFilm.Visible = false;
+            panelFilm.Visible = false;
+            panelJadwal.Visible = true;
+            panelKursi.Visible = false;
+            panelSign.Visible = false;
+        }
+
         private void button2_Click(object sender, EventArgs e)
         {
 
