@@ -215,5 +215,211 @@ namespace ServiceTB
             con.Close();
             return msg;
         }
+
+        public string CreateKursi(Bioskop bioskop)
+        {
+            string msg = "GAGAl Create Kursi";
+            string query = String.Format("INSERT INTO InputData (Nomor_Kursi, Ketersediaan, IDBioskop, JudulFilm, Tanggal, Jam) Values ('{0}','{1}','{2}','{3}','{4}','{5}')",
+                bioskop.Nomor_Kursi, bioskop.Ketersediaan, bioskop.IDBioskop, bioskop.JudulFilm, bioskop.Tanggal, bioskop.Jam);
+            SqlCommand com = new SqlCommand(query, con);  //Comand
+
+            try
+            {
+                con.Open();
+                Console.WriteLine(query);
+                com.ExecuteNonQuery();
+                msg = "SUKSES Create Kursi";
+            }
+
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+                msg = "GAGAL Create Kursi";
+            }
+            con.Close();
+            return msg;
+        }
+
+        public List<Bioskop> GetIDBioskop()
+        {
+            List<Bioskop> Listbskp = new List<Bioskop>();
+            string query = String.Format("SELECT IDBioskop from Bioskop");
+            SqlCommand com = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop bio = new Bioskop();
+                    bio.IDBioskop = reader.GetString(0);
+                    Listbskp.Add(bio);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return Listbskp;
+        }
+
+        public Bioskop GetKursiBioskop(string IDBioskop)
+        {
+            Bioskop kursiBioskop = new Bioskop();
+            string query = String.Format("SELECT Jumlah_Kursi from Bioskop where IDBioskop = '{0}'", IDBioskop);
+            SqlCommand com = new SqlCommand(query, con);
+
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    kursiBioskop.Jumlah_Kursi = reader.GetInt32(0);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return kursiBioskop;
+        }
+
+        public List<Bioskop> GetJudulByBioskop(string IDBioskop)
+        {
+            List<Bioskop> JudulByID = new List<Bioskop>();
+            string query = String.Format("SELECT DISTINCT JudulFilm from InputData where IDBioskop = '{0}'", IDBioskop);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop jdl = new Bioskop();
+                    jdl.JudulFilm = reader.GetString(0);
+                    JudulByID.Add(jdl);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return JudulByID;
+        }
+
+        public List<Bioskop> GetTanggalBy(string IDBioskop, string JudulFilm)
+        {
+            List<Bioskop> TanggaByID = new List<Bioskop>();
+            string query = String.Format("SELECT DISTINCT Tanggal from InputData where IDBioskop = '{0}' AND JudulFilm = '{1}'", IDBioskop, JudulFilm);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop tanggal = new Bioskop();
+                    tanggal.Tanggal = reader.GetString(0);
+                    TanggaByID.Add(tanggal);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return TanggaByID;
+        }
+
+        public List<Bioskop> GetJamBy(string IDBioskop, string JudulFilm, string Tanggal)
+        {
+            List<Bioskop> JamBy = new List<Bioskop>();
+            string query = String.Format("SELECT DISTINCT Jam from InputData where IDBioskop = '{0}' AND JudulFilm = '{1}' AND Tanggal = '{2}'", IDBioskop, JudulFilm, Tanggal);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop jam = new Bioskop();
+                    jam.Jam = reader.GetString(0);
+                    JamBy.Add(jam);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return JamBy;
+        }
+
+        public List<Bioskop> showKursi(string IDBioskop, string JudulFilm, string Tanggal, string Jam)
+        {
+            List<Bioskop> kursi = new List<Bioskop>();
+            string query = String.Format("SELECT IDBioskop, JudulFilm, Nomor_Kursi, Ketersediaan from InputData where IDBioskop = '{0}' AND JudulFilm = '{1}' AND Tanggal = '{2}' AND Jam = '{3}'", IDBioskop, JudulFilm, Tanggal, Jam);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop data = new Bioskop();
+                    data.IDBioskop = reader.GetString(0);
+                    data.JudulFilm = reader.GetString(1);
+                    data.Nomor_Kursi = reader.GetString(2);
+                    data.Ketersediaan = reader.GetString(3);
+                    kursi.Add(data);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return kursi;
+        }
+
+        public List<Bioskop> showJadwal(string IDBioskop, string JudulFilm)
+        {
+            List<Bioskop> Jadwal = new List<Bioskop>();
+            string query = String.Format("Select DISTINCT IDBioskop, JudulFilm, Tanggal, Jam FROM InputData where IDBioskop = '{0}' AND JudulFilm = '{1}'", IDBioskop, JudulFilm);
+            SqlCommand com = new SqlCommand(query, con);
+            try
+            {
+                con.Open();
+                SqlDataReader reader = com.ExecuteReader();
+                while (reader.Read())
+                {
+                    Bioskop data = new Bioskop();
+                    data.IDBioskop = reader.GetString(0);
+                    data.JudulFilm = reader.GetString(1);
+                    data.Tanggal = reader.GetString(2);
+                    data.Jam = reader.GetString(3);
+                    Jadwal.Add(data);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                Console.WriteLine(query);
+            }
+            con.Close();
+            return Jadwal;
+        }
     }
 }

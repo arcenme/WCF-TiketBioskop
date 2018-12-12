@@ -76,6 +76,63 @@ namespace ServiceTB
           UriTemplate = "Film/Delete")]
         string DeleteFilm(Bioskop bioskop);
 
+        //Membuat data jumlah Kursi
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+             RequestFormat = WebMessageFormat.Json,
+             ResponseFormat = WebMessageFormat.Json,
+             UriTemplate = "Inputdata")]
+        string CreateKursi(Bioskop bioskop);
+
+        //Input Data
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Bioskop/IDBioskop")]
+        List<Bioskop> GetIDBioskop();
+
+        [OperationContract]
+        [WebGet(
+            ResponseFormat = WebMessageFormat.Json,
+            UriTemplate = "Bioskop/IDBioskop={IDBioskop}")]
+        Bioskop GetKursiBioskop(string IDBioskop);
+
+        //Cek kursi
+        //Get Judul by IDBisokop
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Kursi/IDBioskop={IDBioskop}")]
+        List<Bioskop> GetJudulByBioskop(string IDBioskop);
+
+        //Get Tanggal by
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Kursi/IDBioskop={IDBioskop}JudulFilm={JudulFilm}")]
+        List<Bioskop> GetTanggalBy(string IDBioskop, string JudulFilm);
+
+        //Get Jam by
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Kursi/IDBioskop={IDBioskop}JudulFilm={JudulFilm}Tanggal={Tanggal}")]
+        List<Bioskop> GetJamBy(string IDBioskop, string JudulFilm, string Tanggal);
+
+        //Show data kursi
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Kursi/IDBioskop={IDBioskop}JudulFilm={JudulFilm}Tanggal={Tanggal}Jam={Jam}")]
+        List<Bioskop> showKursi(string IDBioskop, string JudulFilm, string Tanggal, string Jam);
+
+        //Show data Jadwal
+        [OperationContract]
+        [WebGet(
+          ResponseFormat = WebMessageFormat.Json,
+          UriTemplate = "Jadwal/IDBioskop={IDBioskop}JudulFilm={JudulFilm}")]
+        List<Bioskop> showJadwal(string IDBioskop, string JudulFilm);
+
     }
 
     [DataContract]
